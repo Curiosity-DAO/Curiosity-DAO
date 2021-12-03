@@ -600,7 +600,7 @@ contract Curiosity is ERC20Capped, Ownable {
     address private immutable _daoTreasury = 0x65a0021268Bd6c021dFfe781990f6885c8D2C72B; // burner address; will probably change later
 
     /**
-     * @notice List of wallet addresses to receive
+     * @notice whitelist of wallet addresses to receive airdrops
      */
     address[] private _airdropList = [
         0xe4e1487dBbEC9Fc7e6a363A37b71A9672dAD358c // Lucas Walters
