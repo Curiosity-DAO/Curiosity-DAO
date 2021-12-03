@@ -3,7 +3,7 @@
 pragma solidity ^0.8.0;
 
 /**
- * @dev For details, read the README.md file in the Github repo @ https://www.github.com/theLucasWalters
+ * @dev For details, read the README.md file in the Github repo @ https://www.github.com/theLucasWalters/Curiosity-DAO
  */
 
 // Setup
