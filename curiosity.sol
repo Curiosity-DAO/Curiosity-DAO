@@ -8,22 +8,21 @@ pragma solidity ^0.8.0;
 
 // Setup
 
-// Actual token contract starts at line 597 (very close to the bottom)
+// Actual token contract starts at line 596
 
 // set a hard cap on number of tokens
 uint constant total = 100000000 ether; // 100 million tokens
 
 // tokens to be airdropped to DAO members
-uint constant airdropSupply = total / 10; // 10% of total (10 million tokens)
+uint constant dropSupply = total / 10; // 10% of total (10 million tokens)
 
 // the rest to be sent to the DAO
-uint constant remainder = total - airdropSupply; // 90% or 90 million tokens)
+uint constant remainder = total - dropSupply; // 90% or 90 million tokens)
 
-// number of airdrops
-uint constant airdrops = 25; // current number of CC readers
+uint constant drops = 25; // current number of CC readers
 
 // size of each drop
-uint constant airdropSize = airdropSupply / airdrops; // 400,000 tokens per reader *mind-blown emoji*
+uint constant dropSize = dropSupply / drops; // 400,000 tokens per reader *mind-blown emoji*
 
 /**
  * @dev Provides information about the current execution context, including the
@@ -596,24 +595,26 @@ abstract contract ERC20Capped is ERC20 {
  */
 contract Curiosity is ERC20Capped, Ownable {
 
+    /// number of tokens left to be minted; starts at 10 million
+    uint internal _tokensLeft = 10000000 ether;
+
+    /// number of drops left
+    uint8 internal _drops = 25;
+
+    /// Event to broadcast that an airdrop has been claimed
+    event dropClaimed(address receiver, uint amount);
+
     /// DAO Treasury address
     address private immutable _daoTreasury = 0x65a0021268Bd6c021dFfe781990f6885c8D2C72B; // burner address; will probably change later
 
-    /**
-     * @notice whitelist of wallet addresses to receive airdrops
-     */
-    address[] private _airdropList = [
+    /// Whitelist of wallet addresses to receive airdrops
+    address[] private _dropList = [
         0xe4e1487dBbEC9Fc7e6a363A37b71A9672dAD358c // Lucas Walters
     ];
 
-    /**
-     * @notice Name of the token is Curiosity (same as the DAO) and the symbol is CC
-     */
+    /// Name of the token is Curiosity (same as the DAO) and the symbol is CC
     constructor() ERC20("Curiosity", "CC") ERC20Capped(100000000 ether) {
-        /// airdrop tokens to members
-        _mint(address(this), airdropSupply);
-
-        /// mint remaining tokens to DAO Treasury
+        /// Mint tokens not reserved for the drop to the DAO
         _mint(_daoTreasury, remainder);
     }
 
@@ -627,7 +628,29 @@ contract Curiosity is ERC20Capped, Ownable {
     /**
      * @return the list of addresses on the airdrop whitelist
      */
-    function getAirdropList() external view returns (address[] memory) {
-        return _airdropList;
+    function getDropList() external view returns (address[] memory) {
+        return _dropList;
+    }
+
+    /**
+     * @return number of tokens left to mint
+     */
+    function remainingTokens() external view returns (uint) {
+        return _tokensLeft;
+    }
+
+    /**
+     * @return number of airdrops left
+     */
+    function remainingDrops() external view returns (uint8) {
+        return _drops;
+    }
+
+    /// Airdrop mechanism
+    function claim() public {
+        _mint(msg.sender, dropSize);
+        _tokensLeft -= dropSize;
+        _drops--;
+        emit dropClaimed(msg.sender, dropSize);
     }
 }

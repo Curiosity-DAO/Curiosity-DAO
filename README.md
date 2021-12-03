@@ -14,3 +14,8 @@ Curiosity isn't finished yet. At the moment, I plan to release everything 1st Ja
 I'm a single developer who is also working to publish a newsletter every week and trying to build a community around it.
 If you would like to help out with anything (please do), please reach out to me on Twitter @ https://www.twitter.com/theLucasWalters.
 My DM's are always open :)
+
+### Security
+
+If the contract were to be deployed right now, any address could claim an airdrop. I plan to fix this using an Oracle (like Chainlink),
+but I don't have that implemented yet.
