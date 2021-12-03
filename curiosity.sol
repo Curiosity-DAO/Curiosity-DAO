@@ -8,7 +8,7 @@ pragma solidity ^0.8.0;
 
 // Setup
 
-// Actual token contract starts at line 596
+// Actual token contract starts at line 597
 
 // set a hard cap on number of tokens
 uint constant total = 100000000 ether; // 100 million tokens
@@ -19,6 +19,7 @@ uint constant dropSupply = total / 10; // 10% of total (10 million tokens)
 // the rest to be sent to the DAO
 uint constant remainder = total - dropSupply; // 90% or 90 million tokens)
 
+// number of drops
 uint constant drops = 25; // current number of CC readers
 
 // size of each drop
