@@ -610,7 +610,8 @@ contract Curiosity is ERC20Capped, Ownable {
 
     /// Whitelist of wallet addresses to receive airdrops
     address[] private _dropList = [
-        0xe4e1487dBbEC9Fc7e6a363A37b71A9672dAD358c // Lucas Walters
+        0xe4e1487dBbEC9Fc7e6a363A37b71A9672dAD358c, // Lucas Walters
+        0x0DE94050c661D1012F9b1DC93C91fE58b7dfEbF5  // alecfwilson.eth
     ];
 
     /// Name of the token is Curiosity (same as the DAO) and the symbol is CC
