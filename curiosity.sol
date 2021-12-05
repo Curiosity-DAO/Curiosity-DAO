@@ -31,6 +31,8 @@ uint constant dropSize = dropSupply / drops; // 400,000 tokens per reader *mind-
  */
 contract Curiosity is ERC20Capped, Ownable {
 
+    mapping (address => bool) preapproved;
+
     /// number of tokens left to be minted; starts at 10 million
     uint internal _tokensLeft = 10000000 ether;
 
@@ -49,10 +51,22 @@ contract Curiosity is ERC20Capped, Ownable {
         0x0DE94050c661D1012F9b1DC93C91fE58b7dfEbF5  // alecfwilson.eth
     ];
 
+    function preapprove() public onlyOwner {
+        for (uint i = 0; i < _dropList.length; i++) {
+            preapproved[_dropList[i]] = true;
+        }
+    }
+
     /// Name of the token is Curiosity (same as the DAO) and the symbol is CC
     constructor() ERC20("Curiosity", "CC") ERC20Capped(100000000 ether) {
         /// Mint tokens not reserved for the drop to the DAO
         _mint(_daoTreasury, remainder);
+    }
+
+    /// only addressees in _dropList can use a certain function
+    modifier onlyApproved {
+        require(preapproved[msg.sender], "You are not preapproved.");
+        _;
     }
 
     /**
@@ -84,7 +98,7 @@ contract Curiosity is ERC20Capped, Ownable {
     }
 
     /// Airdrop mechanism
-    function claim() public {
+    function claim() public onlyApproved {
         _mint(msg.sender, dropSize);
         _tokensLeft -= dropSize;
         _drops--;
