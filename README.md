@@ -16,7 +16,7 @@ Links to specific contracts:
 
 Curiosity isn't finished yet. At the moment, I plan to release everything 1st January 2022, but that can change anytime.
 I'm a single developer who is also working to publish a newsletter every week and trying to build a community around it.
-If you would like to help out with anything (please do), please reach out to me on Twitter @ https://twitter.com/theLucasWalters.
+If you would like to help out with anything (please do), please reach out to me on Twitter [@theLucasWalters](https://twitter.com/theLucasWalters).
 My DM's are always open :)
 
 ## Security
