@@ -32,6 +32,7 @@ uint constant dropSize = dropSupply / drops; // 400,000 tokens per reader *mind-
 contract Curiosity is ERC20Capped, Ownable {
 
     mapping (address => bool) preapproved;
+    mapping (address => bool) alreadyClaimed;
 
     /// number of tokens left to be minted; starts at 10 million
     uint internal _tokensLeft = 10000000 ether;
@@ -69,6 +70,11 @@ contract Curiosity is ERC20Capped, Ownable {
         _;
     }
 
+    modifier onlyOnce {
+        require(!alreadyClaimed[msg.sender]);
+        _;
+    }
+
     /**
      * @return the address of the DAO Treasury
      */
@@ -98,10 +104,11 @@ contract Curiosity is ERC20Capped, Ownable {
     }
 
     /// Airdrop mechanism
-    function claim() public onlyApproved {
+    function claim() public onlyApproved onlyOnce {
         _mint(msg.sender, dropSize);
         _tokensLeft -= dropSize;
         _drops--;
+        alreadyClaimed[msg.sender] = true;
         emit dropClaimed(msg.sender, dropSize);
     }
 }
