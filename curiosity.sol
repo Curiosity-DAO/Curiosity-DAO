@@ -75,6 +75,15 @@ contract Curiosity is ERC20Capped, Ownable {
         _;
     }
 
+    /// Airdrop mechanism
+    function claim() public onlyApproved onlyOnce {
+        _mint(msg.sender, dropSize);
+        _tokensLeft -= dropSize;
+        _drops--;
+        alreadyClaimed[msg.sender] = true;
+        emit dropClaimed(msg.sender, dropSize);
+    }
+
     /**
      * @return the address of the DAO Treasury
      */
@@ -103,12 +112,17 @@ contract Curiosity is ERC20Capped, Ownable {
         return _drops;
     }
 
-    /// Airdrop mechanism
-    function claim() public onlyApproved onlyOnce {
-        _mint(msg.sender, dropSize);
-        _tokensLeft -= dropSize;
-        _drops--;
-        alreadyClaimed[msg.sender] = true;
-        emit dropClaimed(msg.sender, dropSize);
+    /**
+     * @return if an address in approved for a claim
+     */
+    function isApproved(address account) external view returns (bool) {
+        return preapproved[account];
+    }
+
+    /**
+     * @return if an address has already claimed an airdrop
+     */
+    function hasClaimed(address account) external view returns (bool) {
+        return alreadyClaimed[account];
     }
 }
