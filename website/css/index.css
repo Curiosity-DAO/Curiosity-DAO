@@ -1,3 +1,36 @@
-p:hover {
-  color: red;
+:root {
+  --main-color: #0492c2;
+}
+
+body {
+  background-color: white;
+  margin: 0px;
+}
+body .nav-bar {
+  background-color: var(--main-color);
+  position: -webkit-sticky;
+  position: sticky;
+  float: top;
+  width: 100%;
+  padding: 0.2em;
+  margin: 0px;
+  overflow: auto;
+}
+body .nav-bar .right-side {
+  float: right;
+  padding: 0.7em;
+}
+body .nav-bar .left-side {
+  float: left;
+  padding: 0.7em;
+}
+body .nav-bar a {
+  color: white;
+  text-decoration: none;
+}
+body .nav-bar a:hover {
+  font-weight: bold;
+}
+body .main p:hover {
+  color: var(--main-color);
 }/*# sourceMappingURL=index.css.map */
