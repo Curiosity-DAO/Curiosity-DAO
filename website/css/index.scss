@@ -1,3 +1,44 @@
-p:hover {
-    color: red;
+:root {
+    --main-color: #0492c2;
+}
+
+body {
+    background-color: white;
+    margin: 0px;
+
+    .nav-bar {
+        background-color: var(--main-color);
+        position: sticky;
+        float: top;
+        width: 100%;
+        padding: 0.2em;
+        margin: 0px;
+        overflow: auto;
+
+        .right-side {
+            float: right;
+            padding: 0.7em;
+        }
+
+        .left-side {
+            float: left;
+            padding: 0.7em;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        a:hover {
+            font-weight: bold;
+        }
+    }
+
+    .main {
+
+        p:hover {
+            color: var(--main-color);
+        }
+    }
 }
