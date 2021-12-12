@@ -6,6 +6,12 @@ It's far from being ready, but I'm constantly working on updating and adding thi
 For the website code, check out the `website` folder.<br>
 For the token smart contracts, check out the `token_contracts` folder.
 
+### Security
+
+The airdrop is insecure again; that was done on purpose.
+An airdrop can be claimed by anyone, but it won't be left like that for long.
+The contract will be fixed before the official launch.
+
 ## `./webstie`
 ## Curiosity DAO Website/Airdrop Interface
 

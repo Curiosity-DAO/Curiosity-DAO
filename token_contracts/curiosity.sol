@@ -46,28 +46,10 @@ contract Curiosity is ERC20Capped, Ownable {
     /// DAO Treasury address
     address private immutable _daoTreasury = 0x65a0021268Bd6c021dFfe781990f6885c8D2C72B; // burner address; will probably change later
 
-    /// Whitelist of wallet addresses to receive airdrops
-    address[] private _dropList = [
-        0xe4e1487dBbEC9Fc7e6a363A37b71A9672dAD358c, // Lucas Walters
-        0x0DE94050c661D1012F9b1DC93C91fE58b7dfEbF5  // alecfwilson.eth
-    ];
-
-    function preapprove() public onlyOwner {
-        for (uint i = 0; i < _dropList.length; i++) {
-            preapproved[_dropList[i]] = true;
-        }
-    }
-
     /// Name of the token is Curiosity (same as the DAO) and the symbol is CC
     constructor() ERC20("Curiosity", "CC") ERC20Capped(100000000 ether) {
         /// Mint tokens not reserved for the drop to the DAO
         _mint(_daoTreasury, remainder);
-    }
-
-    /// only addressees in _dropList can use a certain function
-    modifier onlyApproved {
-        require(preapproved[msg.sender], "You are not preapproved.");
-        _;
     }
 
     modifier onlyOnce {
@@ -76,7 +58,7 @@ contract Curiosity is ERC20Capped, Ownable {
     }
 
     /// Airdrop mechanism
-    function claim() public onlyApproved onlyOnce {
+    function claim() public onlyOnce {
         _mint(msg.sender, dropSize);
         _tokensLeft -= dropSize;
         _drops--;
@@ -89,13 +71,6 @@ contract Curiosity is ERC20Capped, Ownable {
      */
     function getDaoAddress() external view returns (address) {
         return _daoTreasury;
-    }
-
-    /**
-     * @return the list of addresses on the airdrop whitelist
-     */
-    function getDropList() external view returns (address[] memory) {
-        return _dropList;
     }
 
     /**
