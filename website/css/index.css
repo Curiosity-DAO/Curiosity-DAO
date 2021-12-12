@@ -6,7 +6,7 @@ body {
   background-color: white;
   margin: 0px;
 }
-body .nav-bar {
+body .navbar {
   background-color: var(--main-color);
   position: -webkit-sticky;
   position: sticky;
@@ -16,21 +16,21 @@ body .nav-bar {
   margin: 0px;
   overflow: auto;
 }
-body .nav-bar .right-side {
+body .navbar .right-side {
   float: right;
   padding: 0.7em;
 }
-body .nav-bar .left-side {
+body .navbar .left-side {
   float: left;
   padding: 0.7em;
 }
-body .nav-bar a {
+body .navbar a {
   color: white;
   text-decoration: none;
 }
-body .nav-bar a:hover {
+body .navbar a:hover {
   font-weight: bold;
 }
-body .main p:hover {
-  color: var(--main-color);
+body .main {
+  margin: 1em;
 }/*# sourceMappingURL=index.css.map */
