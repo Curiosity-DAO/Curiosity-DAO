@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 :root {
     --main-color: #0492c2;
 }
@@ -5,6 +7,11 @@
 body {
     background-color: white;
     margin: 0px;
+    font-family: 'Roboto';
+    
+    a {
+        text-decoration: none;
+    }
 
     .navbar {
         background-color: var(--main-color);
@@ -15,27 +22,47 @@ body {
         margin: 0px;
         overflow: auto;
 
-        .right-side {
-            float: right;
-            padding: 0.7em;
-        }
-
         .left-side {
             float: left;
             padding: 0.7em;
-        }
 
-        a {
-            color: white;
-            text-decoration: none;
-        }
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
 
-        a:hover {
-            font-weight: bold;
+                li {
+                    display: inline;
+                    padding: 10px;
+                }
+            }
+
+            a {
+                color: white;
+            }
+    
+            a:hover {
+                font-weight: bold;
+            }
         }
     }
 
-    .main {
+    .home {
         margin: 1em;
+
+        .logo {
+            height: 100px;
+            width: 275px;
+        }
+
+        .main {
+            margin: auto;
+            width: 50%;
+            padding: 10px;
+
+            p {
+                text-align: center;
+            }
+        }
     }
 }
