@@ -2,12 +2,14 @@
 
 :root {
     --main-color: #0492c2;
+    --main-font: "Roboto";
 }
 
 body {
     background-color: white;
     margin: 0px;
-    font-family: 'Roboto';
+    font-family: var(--main-font);
+    font-weight: bold;
     
     a {
         text-decoration: none;
@@ -22,20 +24,25 @@ body {
         margin: 0px;
         overflow: auto;
 
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+
+            li {
+                display: inline;
+                padding: 10px;
+            }
+        }
+
+        button {
+            border: none;
+            border-radius: 1.5em;
+        }
+
         .left-side {
             float: left;
             padding: 0.7em;
-
-            ul {
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
-
-                li {
-                    display: inline;
-                    padding: 10px;
-                }
-            }
 
             a {
                 color: white;
@@ -43,6 +50,22 @@ body {
     
             a:hover {
                 font-weight: bold;
+            }
+        }
+
+        .right-side {
+            float: right;
+
+            .connect-wallet {
+                background-color: white;
+                color: var(--main-color);
+                padding: 0.7em;
+                margin: 0.3em 2em 0.3em 0.3em;
+                font-weight: bold;
+            }
+
+            .connect-wallet:hover {
+                cursor: pointer;
             }
         }
     }
@@ -60,8 +83,41 @@ body {
             width: 50%;
             padding: 10px;
 
-            p {
-                text-align: center;
+            .claim-div {
+                margin: auto;
+                width: 50%;
+                padding: 10px;
+
+                .email-label {
+                    float: left;
+                    padding-right: 5px;
+                }
+
+                .email {
+                    float: left;
+                    border-radius: 0.5em;
+                }
+
+                .submit {
+                    background-color: var(--main-color);
+                    color: white;
+                    border-radius: 0.5em;
+                    margin-left: 5px;
+                    font-family: var(--main-font);
+                    font-weight: bold;
+                }
+
+                .submit:hover {
+                    cursor: pointer;
+                }
+
+                .claim-info .claim-warning {
+                    float: left;
+                }
+
+                .claim-warning {
+                    color: red;
+                }
             }
         }
     }
