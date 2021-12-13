@@ -1,12 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 :root {
   --main-color: #0492c2;
+  --main-font: "Roboto";
 }
 
 body {
   background-color: white;
   margin: 0px;
-  font-family: "Roboto";
+  font-family: var(--main-font);
+  font-weight: bold;
 }
 body a {
   text-decoration: none;
@@ -21,24 +23,41 @@ body .navbar {
   margin: 0px;
   overflow: auto;
 }
-body .navbar .left-side {
-  float: left;
-  padding: 0.7em;
-}
-body .navbar .left-side ul {
+body .navbar ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-body .navbar .left-side ul li {
+body .navbar ul li {
   display: inline;
   padding: 10px;
+}
+body .navbar button {
+  border: none;
+  border-radius: 1.5em;
+}
+body .navbar .left-side {
+  float: left;
+  padding: 0.7em;
 }
 body .navbar .left-side a {
   color: white;
 }
 body .navbar .left-side a:hover {
   font-weight: bold;
+}
+body .navbar .right-side {
+  float: right;
+}
+body .navbar .right-side .connect-wallet {
+  background-color: white;
+  color: var(--main-color);
+  padding: 0.7em;
+  margin: 0.3em 2em 0.3em 0.3em;
+  font-weight: bold;
+}
+body .navbar .right-side .connect-wallet:hover {
+  cursor: pointer;
 }
 body .home {
   margin: 1em;
@@ -52,6 +71,33 @@ body .home .main {
   width: 50%;
   padding: 10px;
 }
-body .home .main p {
-  text-align: center;
+body .home .main .claim-div {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+body .home .main .claim-div .email-label {
+  float: left;
+  padding-right: 5px;
+}
+body .home .main .claim-div .email {
+  float: left;
+  border-radius: 0.5em;
+}
+body .home .main .claim-div .submit {
+  background-color: var(--main-color);
+  color: white;
+  border-radius: 0.5em;
+  margin-left: 5px;
+  font-family: var(--main-font);
+  font-weight: bold;
+}
+body .home .main .claim-div .submit:hover {
+  cursor: pointer;
+}
+body .home .main .claim-div .claim-info .claim-warning {
+  float: left;
+}
+body .home .main .claim-div .claim-warning {
+  color: red;
 }/*# sourceMappingURL=index.css.map */
