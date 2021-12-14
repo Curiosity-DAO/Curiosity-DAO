@@ -41,3 +41,4 @@ There are a total of 3 developers working on this repository at the moment, but 
 If you would like to help out with anything (please do), please reach out to me on Twitter [@theLucasWalters](https://twitter.com/theLucasWalters) or in our Discord server ([here](https://discord.gg/Xs293sZAkW/)).
 
 If you contribute to the code in a meaningful way before the token airdrop, you'll be included on the whitelist.
+You can also subscribe to the CryptoCurious newsletter on [Substack](https://lucaswalters.substack.com/) to claim an airdrop without doing any work if you so choose.

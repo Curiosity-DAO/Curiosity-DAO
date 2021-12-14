@@ -3,7 +3,7 @@
 pragma solidity ^0.8.10;
 
 /**
- * @dev For details, read the README.md file in the Github repo @ https://github.com/theLucasWalters/Curiosity-DAO/blob/main/README.md
+ * @dev For details, read the README.md file in the Github repo @ https://github.com/Curiosity-DAO/Curiosity-DAO/blob/main/README.md
  */
 
 // Setup
@@ -23,7 +23,7 @@ uint constant remainder = initialSupply - dropSupply; // 3.5 million
 uint8 constant drops = 30; // current number of CC readers
 
 // size of each drop
-uint constant dropSize = dropSupply / drops; // 50,000 token per reader
+uint constant dropSize = dropSupply / drops; // 50,000 tokens per reader
 
 /**
  * @title Curiosity
