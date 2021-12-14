@@ -11,45 +11,52 @@ pragma solidity ^0.8.10;
 import "./setup.sol";
 
 // set a hard cap on number of tokens
-uint constant total = 100000000 ether; // 100 million tokens
+uint constant initialSupply = 5000000 ether; // 5 million tokens
 
 // tokens to be airdropped to DAO members
-uint constant dropSupply = total / 10; // 10% of total (10 million tokens)
+uint constant dropSupply = 1500000 ether; // 1.5 million
 
 // the rest to be sent to the DAO
-uint constant remainder = total - dropSupply; // 90% or 90 million tokens)
+uint constant remainder = initialSupply - dropSupply; // 3.5 million
 
 // number of drops
-uint constant drops = 25; // current number of CC readers
+uint8 constant drops = 30; // current number of CC readers
 
 // size of each drop
-uint constant dropSize = dropSupply / drops; // 400,000 tokens per reader *mind-blown emoji*
+uint constant dropSize = dropSupply / drops; // 50,000 token per reader
 
 /**
  * @title Curiosity
  * @author Lucas Walters - https://www.github.com/theLucasWalters
  */
-contract Curiosity is ERC20Capped, Ownable {
+contract Curiosity is ERC20, Ownable {
 
-    mapping (address => bool) preapproved;
+    /// mapping to assign a bool value to an address; used to check if the address has already claimed a drop
     mapping (address => bool) alreadyClaimed;
 
-    /// number of tokens left to be minted; starts at 10 million
-    uint internal _tokensLeft = 10000000 ether;
+    /// number of tokens left to be minted; starts at 1.5 million
+    uint internal _tokensLeft = dropSupply;
 
     /// number of drops left
-    uint8 internal _drops = 25;
+    uint8 internal _drops = drops;
 
     /// Event to broadcast that an airdrop has been claimed
     event dropClaimed(address receiver, uint amount);
+
+    /// Event to broadcast that new tokens have been minted
+    event newMinted(address receiver, uint amount);
 
     /// DAO Treasury address
     address private immutable _daoTreasury = 0x65a0021268Bd6c021dFfe781990f6885c8D2C72B; // burner address; will probably change later
 
     /// Name of the token is Curiosity (same as the DAO) and the symbol is CC
-    constructor() ERC20("Curiosity", "CC") ERC20Capped(100000000 ether) {
+    constructor() ERC20("Curiosity", "CC") {
+
         /// Mint tokens not reserved for the drop to the DAO
         _mint(_daoTreasury, remainder);
+
+        /// broadcast that new tokens have been minted
+        emit newMinted(_daoTreasury, remainder);
     }
 
     modifier onlyOnce {
@@ -59,11 +66,32 @@ contract Curiosity is ERC20Capped, Ownable {
 
     /// Airdrop mechanism
     function claim() public onlyOnce {
+
+        /// immediately set `alreadyClaimed` to true to avoid bot attacks
+        alreadyClaimed[msg.sender] = true;
+
+        /// mint to the address calling
         _mint(msg.sender, dropSize);
+
+        /// emit `newMinted` event
+        emit newMinted(msg.sender, dropSize);
+
+        /// subtract amount minted from the tokens left and lower number of drops left by 1
         _tokensLeft -= dropSize;
         _drops--;
-        alreadyClaimed[msg.sender] = true;
+
+        /// emit a `dropClaimed` event
         emit dropClaimed(msg.sender, dropSize);
+    }
+
+    /// Allows DAO to mint new tokens
+    function mintNew(uint amount) external onlyOwner {
+
+        /// mint to the DAO Treasury
+        _mint(_daoTreasury, amount);
+
+        /// broadcast that new tokens have been minted
+        emit newMinted(_daoTreasury, amount);
     }
 
     /**
@@ -85,13 +113,6 @@ contract Curiosity is ERC20Capped, Ownable {
      */
     function remainingDrops() external view returns (uint8) {
         return _drops;
-    }
-
-    /**
-     * @return if an address in approved for a claim
-     */
-    function isApproved(address account) external view returns (bool) {
-        return preapproved[account];
     }
 
     /**

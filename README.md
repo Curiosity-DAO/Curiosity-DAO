@@ -12,17 +12,15 @@ The airdrop is insecure again; that was done on purpose.
 An airdrop can be claimed by anyone, but it won't be left like that for long.
 The contract will be fixed before the official launch.
 
-## `./webstie`
+## `webstie`
 ## Curiosity DAO Website/Airdrop Interface
 
 For CC readers/community members, they'll need an interface to claim their token airdrops.
-I'm going to build a website (preferably with help from better web devs) to do this.
+The website is in the process of being built, but is far from done.
 
-### Note
+You can look at Issue #1 on the [Curiosity-DAO page](https://github.com/Curiosity-DAO/Curiosity-DAO/issues/1) for more info.
 
-I don't actually have any idea of what I'm going to do yet, but I'll be working on it!
-
-## `./token_contracts`
+## `token_contracts`
 ## Curiosity DAO Token (CC)
 
 This is the set of contracts needed for the deployment of the CC governance token for the Curiosity DAO.
@@ -35,11 +33,11 @@ Links to specific contracts:
 - [IERC20](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/IERC20.sol)
 - [IERC20Metadata](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/extensions/IERC20Metadata.sol)
 - [ERC20](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol)
-- [ERC20Capped](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/extensions/ERC20Capped.sol)
 
 ### Note
 
 Curiosity isn't finished yet. At the moment, I plan to release everything 1st January 2022, but that can change anytime.
-I'm a single developer who is also working to publish a newsletter every week and trying to build a community around it.
-If you would like to help out with anything (please do), please reach out to me on Twitter [@theLucasWalters](https://twitter.com/theLucasWalters).
-My DM's are always open :)
+There are a total of 3 developers working on this repository at the moment, but we could always use more.
+If you would like to help out with anything (please do), please reach out to me on Twitter [@theLucasWalters](https://twitter.com/theLucasWalters) or in our Discord server ([here](https://discord.gg/Xs293sZAkW/)).
+
+If you contribute to the code in a meaningful way before the token airdrop, you'll be included on the whitelist.
