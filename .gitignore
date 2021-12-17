@@ -1,1 +1,2 @@
-*.json
+# ignore `approved.json` for security reasons
+approved.json
